@@ -4,30 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pythonProject1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/configs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/configs/configs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/configs/encoder_config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/configs/fancy_encoder_config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/configs/plzwork_config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/data/DataLoader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/kernal/kernal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/networks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/networks/building_blocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/networks/encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/networks/fancy_building_blocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/run_training.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/trainer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training/training/job.slurm" afterDir="false" />
+    <list default="true" id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,11 +68,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702254072754</updated>
-      <workItem from="1702254075348" duration="344000" />
+      <workItem from="1702254075348" duration="644000" />
     </task>
+    <task id="LOCAL-00001" summary="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process.">
+      <option name="closed" value="true" />
+      <created>1702254447375</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702254447375</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process." />
   </component>
 </project>
