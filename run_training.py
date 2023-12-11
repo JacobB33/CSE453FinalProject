@@ -4,14 +4,13 @@ import yaml
 
 from networks.encoder import BrainScanEmbedder, FancyBrainScanEmbedder, plzWork
 from trainer import Trainer
-from training.configs import *
-import torch.nn as nn
+from configs import *
 
 import os
 import torch
 from torch.utils.data import random_split
 from torch.distributed import init_process_group, destroy_process_group
-from training.data import get_train_dataset
+from data import get_train_dataset
 import random
 # import pickle
 # torchrun --nnodes 1 --nproc_per_node 1 ./training/run_training.py 

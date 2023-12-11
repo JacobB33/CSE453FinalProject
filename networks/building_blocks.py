@@ -1,15 +1,11 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the GNU General Public License version 3.
 
-from typing import Optional, Tuple
-from dataclasses import dataclass
-
 import tiktoken
-import torch
 from torch import nn
 import torch.nn.functional as F
 
-from training.configs import *
+from configs import *
 @dataclass
 class ModelArgs:
     dim: int = 512
