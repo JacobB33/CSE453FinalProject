@@ -24,9 +24,14 @@ class TrainerConfig:
 
 @dataclass
 class ModelConfig:
-    upscale_schedule: List[int]
-    num_transformer_layers: int
-    nhead: int
+    vocab_size: int
+    n_layers: int
+    embedding_size: int
+    nheads: int
+    max_seq_len: int
+    norm_eps: float
+    dropout: float
+    linear_dim: int
 
 
 
@@ -65,7 +70,6 @@ class LRSchedulerConfig:
 class WarmUpConfig:
     warmup_steps: int = None
     warmup_lr: float = None
-
 
 def create_lr_scheduler(optimizer, config: LRSchedulerConfig, warmup_config: WarmUpConfig = None):
     if warmup_config:

@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process.">
+    <list default="true" id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="Delete useless files">
+      <change afterPath="$PROJECT_DIR$/training/networks/transformer_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonProject1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CSE453FinalProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/configs/configs.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/configs/configs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/configs/fancy_encoder_config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/configs/plzwork_config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/networks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/networks/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/networks/building_blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/training/networks/building_blocks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/networks/encoder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/training/networks/fancy_building_blocks.py" beforeDir="false" />
     </list>
+    <list id="b2121f75-d5e6-44cd-a703-3832ca1c8579" name="Changes by davintjia" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,29 +37,30 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ZNEKV3kZDmMVIdAbbxCNqtzCbq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/jacob/PycharmProjects/pythonProject1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jacob/PycharmProjects/CSE453FinalProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -68,7 +81,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1702254072754</updated>
-      <workItem from="1702254075348" duration="644000" />
+      <workItem from="1702254075348" duration="2827000" />
+      <workItem from="1702256925275" duration="1682000" />
+      <workItem from="1702258615077" duration="1138000" />
     </task>
     <task id="LOCAL-00001" summary="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process.">
       <option name="closed" value="true" />
@@ -78,7 +93,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702254447375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Delete useless files">
+      <option name="closed" value="true" />
+      <created>1702254753785</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702254753785</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,6 +109,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add distributed training scripts and update related codes&#10;&#10;This update introduces distributed training scripts to facilitate better handling of large scale data sets. Code has also been modified to better align with PyTorch's distributed data parallelism (DDP) guidelines. Additionally, it adds a new loader for training and testing, integrates a kernel-based learning algorithm, and implements support for NVIDIA's Automatic Mixed Precision (AMP) in the training process." />
+    <MESSAGE value="Delete useless files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete useless files" />
   </component>
 </project>
