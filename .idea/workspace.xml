@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/pythonProject1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/configs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/configs/configs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/configs/encoder_config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/configs/fancy_encoder_config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/configs/plzwork_config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/data/DataLoader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/data/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/kernal/kernal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/networks/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/networks/building_blocks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/networks/encoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/networks/fancy_building_blocks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/run_training.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/trainer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training/training/job.slurm" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2ZNEKV3kZDmMVIdAbbxCNqtzCbq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/jacob/PycharmProjects/pythonProject1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-67fca87a943a-c986f194a52a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.11799.259" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0856fdc6-6181-44c8-8f17-a2bb5a3099f3" name="Changes" comment="" />
+      <created>1702254072754</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702254072754</updated>
+      <workItem from="1702254075348" duration="344000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
