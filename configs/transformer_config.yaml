@@ -1,0 +1,35 @@
+trainer_config:
+  max_epochs: 200
+  batch_size: 3
+  data_loader_workers: 16
+  grad_norm_clip: 1.0
+  snapshot_path: overfit.pt
+  save_every: 15
+  use_amp: False
+  use_wandb: True
+  run_name: testing
+  use_lr_scheduler: True
+lr_scheduler_config:
+  type: plateau
+  gamma: 0.5
+  patience: 10
+  mode: min
+  threshold: 0.004
+  min_lr: 0.00001
+  cooldown: 4
+optimizer_config:
+  optimizer: adam
+  weight_decay: 0.0
+  learning_rate: 0.0001
+data_config:
+  sequence_length: 60
+model_config:
+    vocab_size: 50281
+    n_layers: 1
+    embedding_size: 128
+    nheads: 8
+    max_seq_len: 60
+    norm_eps: 0.000001
+    dropout: 0.0
+    linear_dim: 256
+compile: False

@@ -51,7 +51,7 @@ class Trainer:
 
         if trainer_config.use_wandb:
             if self.global_rank == 0:
-                wandb.init(project="BrainScanEncoder", name=trainer_config.run_name, config=cfg)
+                wandb.init(project="cse453-dummy", name=trainer_config.run_name, config=cfg)
 
 
     def _prepare_dataloader(self, dataset: Dataset):

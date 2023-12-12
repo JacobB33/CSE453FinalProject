@@ -1,8 +1,27 @@
+from typing import Optional
+
 import torch
 from torch import nn, Tensor
 import torch.nn.functional as F
 from configs import ModelConfig
 import math
+import tiktoken
+
+
+class RMSNorm(nn.Module):
+    def __init__(self, dim: int, eps: float = 1e-6):
+        super().__init__()
+        self.eps = eps
+        self.weights = nn.Parameter(torch.ones(dim))
+
+    def _norm(self, x: Tensor):
+        return x * torch.rsqrt(torch.mean(x.pow(2), dim=-1, keepdim=True) + self.eps)
+
+    def forward(self, x: Tensor):
+        norm = self._norm(x.float()).type_as(x)
+        return self.weights * norm
+
+
 class PositionalEncoding(nn.Module):
     """
     Module implementing positional encoding for Transformer models.
@@ -35,10 +54,10 @@ class AttentionModule(nn.Module):
         self.qkv = nn.Linear(cfg.embedding_size, cfg.embedding_size * 3)
         self.fc = nn.Linear(cfg.embedding_size, cfg.embedding_size)
         self.head_dim = cfg.embedding_size // cfg.nheads
-        self.pos_embed = PositionalEncoding(cfg.embedding_size, cfg.dropout, cfg.max_seq_len) 
-    
+        self.pos_embed = PositionalEncoding(cfg.embedding_size, cfg.dropout, cfg.max_seq_len)
+
     def forward(self, x: Tensor, mask: Tensor = None):
-        batch_size, seq_len, _ = x.shape()
+        batch_size, seq_len, _ = x.shape
         xq, xk, xv = self.qkv(x).chunk(3, dim=-1)
         xq, xk = self.pos_embed(xq), self.pos_embed(xk)
 
@@ -62,6 +81,66 @@ class AttentionModule(nn.Module):
         return self.fc(output)
 
 
-        
-        
-        
+class FeedForward(nn.Module):
+    def __init__(self, dim: int, hidden_dim: int, multiple_of: int = 256):
+        super().__init__()
+        hidden_dim = int(2 * hidden_dim / 3)
+        hidden_dim = multiple_of * ((hidden_dim + multiple_of - 1) // multiple_of)
+
+        self.in_one = nn.Linear(dim, hidden_dim)
+        self.in_two = nn.Linear(dim, hidden_dim)
+        self.output = nn.Linear(hidden_dim, dim)
+
+    def forward(self, x: Tensor):
+        return self.output(F.silu(self.in_one(x)) * self.in_two(x))
+
+
+class TransformerBlock(nn.Module):
+    def __init__(self, cfg: ModelConfig):
+        super().__init__()
+        self.config = cfg
+
+        self.attn = AttentionModule(cfg)
+
+        self.atn_norm = RMSNorm(cfg.embedding_size, eps=cfg.norm_eps)
+        self.ff_norm = RMSNorm(cfg.embedding_size, eps=cfg.norm_eps)
+
+        self.feed_forward = FeedForward(dim=cfg.embedding_size, hidden_dim=4 * cfg.embedding_size)
+
+    def forward(self, x: Tensor, mask: Optional[Tensor]):
+        h = x + self.attn(self.atn_norm(x), mask)
+        out = h + self.feed_forward(self.ff_norm(h))
+        return out
+
+
+class TransformerModel(nn.Module):
+    def __init__(self, cfg: ModelConfig):
+        super().__init__()
+        self.config = cfg
+
+        self.embedding = nn.Embedding(cfg.vocab_size, cfg.embedding_size)
+        self.layers = nn.ModuleList()
+
+        for _ in range(cfg.n_layers):
+            self.layers.append(TransformerBlock(cfg))
+        self.norm = RMSNorm(cfg.embedding_size, eps=cfg.norm_eps)
+        self.output = nn.Linear(cfg.embedding_size, cfg.vocab_size)
+
+    def forward(self, tokens: Tensor, targets=None, start_pose=0):
+        bsz, seqlen = tokens.shape
+
+        h = self.embedding(tokens)
+        mask = None
+        if seqlen > 1:
+            mask = torch.zeros((1, 1, seqlen, seqlen), device=tokens.device)
+            mask = torch.triu(mask, diagonal=start_pose + 1)
+
+        for layer in self.layers:
+            h = layer(h, mask)
+
+        h = self.norm(h)
+        if targets is None:
+            return self.output(h).float()
+        h = self.output(h).float()
+
+        return h, F.cross_entropy(h.reshape(-1, self.config.vocab_size), targets.flatten())
