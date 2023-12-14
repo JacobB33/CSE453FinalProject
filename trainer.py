@@ -1,6 +1,8 @@
 """
 Taken from the pytorch DDP series
 """
+import time
+
 from configs.configs import *
 from dataclasses import asdict
 from collections import OrderedDict
@@ -132,7 +134,9 @@ class Trainer:
     def train(self):
         for epoch in range(self.epochs_run, self.config.max_epochs):
             epoch += 1
+            start_time = time.time()
             batch_avg_loss = self._run_epoch(epoch, self.train_loader, train=True)
+            end_time = time.time()
 
             # eval run
             if self.test_loader:
@@ -141,7 +145,7 @@ class Trainer:
                 dist.reduce(test_loss, 0, dist.ReduceOp.SUM)
             if self.global_rank == 0:
                 if self.use_wandb:
-                    log_dict = {"loss": batch_avg_loss, "learning_rate": self.optimizer.param_groups[0]['lr']}
+                    log_dict = {"loss": batch_avg_loss, "learning_rate": self.optimizer.param_groups[0]['lr'], "batch_time": end_time - start_time}
                     if self.test_loader:
                         test_loss = test_loss / self.world_size
                         log_dict['test_loss'] = test_loss.item()
@@ -159,4 +163,5 @@ class Trainer:
         if self.global_rank == 0:
             self._save_snapshot(epoch)
             if self.use_wandb:
-                wandb.save(self.config.snapshot_path)
+                # wandb.save(self.config.snapshot_path)
+                pass
