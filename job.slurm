@@ -7,10 +7,9 @@
 #SBATCH --account=weirdlab
 #SBATCH --partition=gpu-a40
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=8
-#SBATCH --ntasks=2
+#SBATCH --ntasks=1
 
-#SBATCH --gpus-per-task=1
+#SBATCH --gpus-per-task=2
 #SBATCH --mem-per-gpu=80G
 #SBATCH --time=24:00:00
 
@@ -36,16 +35,12 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address)
 echo Node IP: $head_node_ip
 export LOGLEVEL=INFO
 
-srun torchrun \
+CUDA_LAUNCH_BLOCKING=1 srun torchrun \
 --nnodes 1 \
 --nproc_per_node 2 \
+--rdzv_id $RANDOM \
+--rdzv_backend c10d \
+--rdzv_endpoint $head_node_ip:29510 \
 run_training.py
-#--rdzv_id $RANDOM \
-#--rdzv_backend c10d \
-#--rdzv_endpoint $head_node_ip:29500 \
-
 # remove the checkpoint since we do not care
-rm *.pt
-
-
-
+#rm *.pt
