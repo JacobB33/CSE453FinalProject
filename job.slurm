@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 #SBATCH --job-name=jacob-experiment
 #SBATCH --mail-type=END,FAIL
@@ -43,6 +43,9 @@ srun torchrun \
 --rdzv_endpoint $head_node_ip:29500 \
 run_training.py
 
+
+# remove the checkpoint since we do not care
+rm *.pt
 
 
 

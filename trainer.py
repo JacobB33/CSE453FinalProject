@@ -84,6 +84,8 @@ class Trainer:
     def _run_batch(self, source, targets, train: bool = True) -> float:
         with torch.set_grad_enabled(train), torch.amp.autocast(device_type="cuda", dtype=torch.float16,
                                                                enabled=self.config.use_amp):
+            print(source.shape)
+            assert False
             _, loss = self.model(source, targets)
 
         if train:
@@ -132,6 +134,8 @@ class Trainer:
         print(f"Snapshot saved at epoch {epoch}")
 
     def train(self):
+        global_start = time.time()
+        running_batch_time = 0
         for epoch in range(self.epochs_run, self.config.max_epochs):
             epoch += 1
             start_time = time.time()
@@ -144,6 +148,7 @@ class Trainer:
                 test_loss = torch.tensor([test_avg_loss]).to(f'cuda:{self.local_rank}')
                 dist.reduce(test_loss, 0, dist.ReduceOp.SUM)
             if self.global_rank == 0:
+                running_batch_time += end_time - start_time
                 if self.use_wandb:
                     log_dict = {"loss": batch_avg_loss, "learning_rate": self.optimizer.param_groups[0]['lr'], "batch_time": end_time - start_time}
                     if self.test_loader:
@@ -164,4 +169,6 @@ class Trainer:
             self._save_snapshot(epoch)
             if self.use_wandb:
                 # wandb.save(self.config.snapshot_path)
-                pass
+                wandb.run.summary['total_run_time'] = global_start - time.time()
+                wandb.run.summary['average_epoch_time'] = running_batch_time - self.config.max_epochs
+                wandb.run.summary['batch_size_per_gpu'] = self.config.batch_size
