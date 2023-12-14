@@ -39,11 +39,10 @@ export LOGLEVEL=INFO
 srun torchrun \
 --nnodes 1 \
 --nproc_per_node 2 \
+run_training.py
 #--rdzv_id $RANDOM \
 #--rdzv_backend c10d \
 #--rdzv_endpoint $head_node_ip:29500 \
-run_training.py
-
 
 # remove the checkpoint since we do not care
 rm *.pt
