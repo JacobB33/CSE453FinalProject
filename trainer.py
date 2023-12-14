@@ -30,7 +30,6 @@ class Trainer:
         self.local_rank = int(os.environ["LOCAL_RANK"])
         self.global_rank = int(os.environ["RANK"])
         self.world_size = int(os.environ['WORLD_SIZE'])
-        print(self.local_rank)
         # data stuff
         # self.train_dataset = train_dataset
         self.train_loader = self._prepare_dataloader(train_dataset)
@@ -85,8 +84,6 @@ class Trainer:
     def _run_batch(self, source, targets, train: bool = True) -> float:
         with torch.set_grad_enabled(train), torch.amp.autocast(device_type="cuda", dtype=torch.float16,
                                                                enabled=self.config.use_amp):
-            print(source.shape)
-            assert False
             _, loss = self.model(source, targets)
 
         if train:

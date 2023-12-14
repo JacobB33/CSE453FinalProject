@@ -9,7 +9,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-#SBATCH --gpus-per-task=2
+#SBATCH --gpus-per-task=1
 #SBATCH --mem-per-gpu=80G
 #SBATCH --time=24:00:00
 
@@ -35,9 +35,9 @@ head_node_ip=$(srun --nodes=1 --ntasks=1 -w "$head_node" hostname --ip-address)
 echo Node IP: $head_node_ip
 export LOGLEVEL=INFO
 
-CUDA_LAUNCH_BLOCKING=1 srun torchrun \
+srun torchrun \
 --nnodes 1 \
---nproc_per_node 2 \
+--nproc_per_node 1 \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29510 \
