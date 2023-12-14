@@ -119,7 +119,7 @@ class Trainer:
         # capture snapshot
         model = self.model
         raw_model = model.module if hasattr(model, "module") else model
-        
+
         snapshot = Snapshot(
             model_state=raw_model.state_dict(),
             optimizer_state=self.optimizer.state_dict(),
@@ -155,18 +155,18 @@ class Trainer:
                         wandb.log(log_dict)
                     else:
                         wandb.log(log_dict)
-                
+
                 if epoch % self.save_every == 0:
                     self._save_snapshot(epoch)
-                
+
                 if self.lr_scheduler:
                     # assumes that this is the reduce on plateau one
                     self.lr_scheduler.step(metrics=batch_avg_loss)
-        
+
         if self.global_rank == 0:
             self._save_snapshot(epoch)
             if self.use_wandb:
                 # wandb.save(self.config.snapshot_path)
-                wandb.run.summary['total_run_time'] = global_start - time.time()
-                wandb.run.summary['average_epoch_time'] = running_batch_time - self.config.max_epochs
+                wandb.run.summary['total_run_time'] = time.time() - global_start
+                wandb.run.summary['average_epoch_time'] = running_batch_time/ self.config.max_epochs
                 wandb.run.summary['batch_size_per_gpu'] = self.config.batch_size
