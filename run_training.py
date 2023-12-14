@@ -17,6 +17,7 @@ import random
 # torchrun --nnodes 1 --nproc_per_node 1 ./training/run_training.py 
 def ddp_setup():
     init_process_group(backend="nccl")
+    print(int(os.environ["LOCAL_RANK"]))
     torch.cuda.set_device(int(os.environ["LOCAL_RANK"]))
 
 

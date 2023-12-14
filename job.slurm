@@ -7,8 +7,9 @@
 #SBATCH --account=weirdlab
 #SBATCH --partition=gpu-a40
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=2
 #SBATCH --cpus-per-task=8
+#SBATCH --ntasks=2
+
 #SBATCH --gpus-per-task=1
 #SBATCH --mem-per-gpu=80G
 #SBATCH --time=24:00:00
