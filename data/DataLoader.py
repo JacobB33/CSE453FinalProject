@@ -12,7 +12,7 @@ import random
 
 
 def get_train_dataset(sequence_length):
-    train_iterator = WikiText2(split='train')
+    train_iterator = WikiText2(split='train', root='/gscratch/weirdlab/jacob33/CSE453FinalProject/data')
     tokenizer = tiktoken.get_encoding('p50k_base')
     # tokenizer = tiktoken.Encoding(
     #     name="my_encoding",

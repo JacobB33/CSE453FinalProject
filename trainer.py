@@ -30,6 +30,7 @@ class Trainer:
         self.local_rank = int(os.environ["LOCAL_RANK"])
         self.global_rank = int(os.environ["RANK"])
         self.world_size = int(os.environ['WORLD_SIZE'])
+        print(self.local_rank)
         # data stuff
         # self.train_dataset = train_dataset
         self.train_loader = self._prepare_dataloader(train_dataset)

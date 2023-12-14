@@ -1,7 +1,7 @@
 trainer_config:
   max_epochs: 5
   batch_size: 300
-  data_loader_workers: 16
+  data_loader_workers: 8
   grad_norm_clip: 1.0
   snapshot_path: overfit.pt
   save_every: 15

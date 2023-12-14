@@ -7,7 +7,7 @@
 #SBATCH --account=weirdlab
 #SBATCH --partition=gpu-a40
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=2
 #SBATCH --cpus-per-task=8
 #SBATCH --gpus-per-task=1
 #SBATCH --mem-per-gpu=80G
@@ -37,7 +37,7 @@ export LOGLEVEL=INFO
 
 srun torchrun \
 --nnodes 1 \
---nproc_per_node 1 \
+--nproc_per_node 2 \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29500 \
