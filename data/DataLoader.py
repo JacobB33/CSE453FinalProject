@@ -8,20 +8,23 @@ import os
 import sys
 import json
 from PIL import Image
+import pickle
 import random
 
 
 def get_train_dataset(sequence_length):
-    train_iterator = WikiText2(split='train', root='/gscratch/weirdlab/jacob33/CSE453FinalProject/data')
-    tokenizer = tiktoken.get_encoding('p50k_base')
+    # train_iterator = WikiText103(split='train', root='/gscratch/weirdlab/jacob33/CSE453FinalProject/data')
+    # tokenizer = tiktoken.get_encoding('p50k_base')
     # tokenizer = tiktoken.Encoding(
     #     name="my_encoding",
     #     pat_str=tokenizer._pat_str,
     #     mergeable_ranks=tokenizer._mergeable_ranks,
     #     special_tokens=
     # )
-    data = [torch.tensor(tokenizer.encode(item)) for item in train_iterator]
-    data = torch.cat(tuple(filter(lambda t: t.numel() > 0, data)))
+    # data = [torch.tensor(tokenizer.encode(item)) for item in train_iterator]
+    # data = torch.cat(tuple(filter(lambda t: t.numel() > 0, data)))
+    # pickle.dump(data, open('dataset.pkl', 'wb'))
+    data = pickle.load(open('/gscratch/weirdlab/jacob33/CSE453FinalProject/data/dataset.pkl', 'rb'))
     ds = TextDataset(data, sequence_length)
     return ds
 
@@ -42,6 +45,6 @@ class TextDataset(Dataset):
 
 
 if __name__ == "__main__":
-    ds = get_train_dataset(200)
-    for idx, (data, targets) in enumerate(ds):
-        print('here')
+    ds = get_train_dataset(120)
+    # for idx, (data, targets) in enumerate(ds):
+    #     print('here')
