@@ -43,7 +43,7 @@ class PositionalEncoding(nn.Module):
         Arguments:
             x: Tensor, shape ``[batch_size, seq_len, embedding_dim]``
         """
-        x = x + self.pe[:x.size(0)]
+        x = x + self.pe[:, x.size(1)]
         return self.dropout(x)
 
 
@@ -113,7 +113,7 @@ class TransformerBlock(nn.Module):
         return out
 
 
-class TransformerModel(nn.Module):
+class   TransformerModel(nn.Module):
     def __init__(self, cfg: ModelConfig):
         super().__init__()
         self.config = cfg
