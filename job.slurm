@@ -5,12 +5,12 @@
 #SBATCH --mail-user=jacob33@cs.washington.edu
 
 #SBATCH --account=weirdlab
-#SBATCH --partition=gpu-a40
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --partition=ckpt
+#SBATCH --nodes=12
+#SBATCH --ntasks=12
 
-#SBATCH --gpus-per-task=1
-#SBATCH --mem-per-gpu=80G
+#SBATCH --gpus-per-task=4
+#SBATCH --mem-per-gpu=40G
 #SBATCH --time=24:00:00
 
 #SBATCH --chdir=/gscratch/weirdlab/jacob33/CSE453FinalProject
@@ -36,11 +36,11 @@ echo Node IP: $head_node_ip
 export LOGLEVEL=INFO
 
 srun torchrun \
---nnodes 1 \
---nproc_per_node 1 \
+--nnodes 12 \
+--nproc_per_node 4  \
 --rdzv_id $RANDOM \
 --rdzv_backend c10d \
 --rdzv_endpoint $head_node_ip:29510 \
 run_training.py
 # remove the checkpoint since we do not care
-#rm *.pt
+# rm *.pt

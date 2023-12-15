@@ -1,5 +1,5 @@
 """
-Taken from the pytorch DDP series
+Inspired from the pytorch DDP series on their website
 """
 import time
 
@@ -20,7 +20,7 @@ import fsspec
 
 
 class Trainer:
-    """This class is a training class for a distributed training run. It is paramatarized by the train config. 
+    """This class is a training class for a distributed training run. It is paramatarized by the train config.
     Includes evaluation runs.
     """
 
@@ -41,14 +41,15 @@ class Trainer:
         self.save_every = self.config.save_every
         self.lr_scheduler = lr_scheduler
         self.use_wandb = trainer_config.use_wandb
-        # initialize amp. Should speed up by 2x or 3x
+        # if using amp, should be a 2x or 3x speedup
         if self.config.use_amp:
             self.scaler = torch.cuda.amp.GradScaler()
-        # load snapshot if available. only necessary on the first node.
+
+        # load snapshot if available. only necessary on the first node. default to snapshot.pt for snapshot file
         if self.config.snapshot_path is None:
             self.config.snapshot_path = "snapshot.pt"
         self._load_snapshot()
-        # wrap with DDP. this step will synch model across all the processes.
+
         self.model = DDP(self.model, device_ids=[self.local_rank])
 
         if trainer_config.use_wandb:
@@ -170,3 +171,8 @@ class Trainer:
                 wandb.run.summary['total_run_time'] = time.time() - global_start
                 wandb.run.summary['average_epoch_time'] = running_batch_time/ self.config.max_epochs
                 wandb.run.summary['batch_size_per_gpu'] = self.config.batch_size
+                trainable_params = sum(
+                    p.numel() for p in self.model.parameters() if p.requires_grad
+                )
+
+                wandb.run.summary['model_paramaters'] = trainable_params
